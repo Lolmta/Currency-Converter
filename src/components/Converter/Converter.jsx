@@ -1,69 +1,50 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { currencies } from '../../helper'
+import CurrencyField from './CurrencyField/CurrencyField';
 
 const Converter = () => {
 
+    const [isFirst, setIsFirst] = useState(true)
 
+    const [firstInput, setFirstInput] = useState(1)
+    const [secondInput, setSecondInput] = useState(1)
 
-    const currencies = ['UAH', 'USD', 'EUR']
-    const apiKey = 'b3bf240f45d69a4d84895f1ad07d9d15c2c1fe9d&from'
+    const [firstCurrency, setFirstCurrency] = useState(currencies[0])
+    const [secondCurrency, setSecondCurrency] = useState(currencies[1])
 
-    const [rate, setRate] = useState(1)
-    const [amount, setAmount] = useState(1)
-    const [isFirst, setISFirst] = useState(true)
-
-    const [requestedСurrency, setCurrency] = useState(currencies[0])
-    const [currencyResult, setCurrencyResult] = useState(currencies[1])
 
     useEffect(() => {
-        axios.get(
-            `https://api.getgeoapi.com/v2/currency/convert?api_key=${apiKey}=${
-                isFirst?requestedСurrency:currencyResult}&to=${
-                isFirst?currencyResult:requestedСurrency}&amount=${
-                isFirst?amount:rate}&format=json`)
-            .then(res => {
-                const data = res.data.rates[isFirst?currencyResult:requestedСurrency].rate_for_amount;
-                isFirst?setRate(data):setAmount(data)
-            })
-    }, [amount, currencyResult, requestedСurrency,rate])
-     
-
+        const getCurrency = async () => {
+            const res = await axios.get(`https://open.er-api.com/v6/latest/${
+            isFirst ? firstCurrency : secondCurrency}`);
+            const data = await res.data.rates
+            isFirst ? setSecondInput(firstInput * data[secondCurrency]) 
+            : setFirstInput(secondInput * data[firstCurrency])
+        }
+        getCurrency()
+            .catch(console.error);
+    }, [firstCurrency, firstInput, secondCurrency, secondInput, isFirst])
 
 
 
     return (
         <div>
-            <div>
-                <input type="number" value={amount}
-                    onChange={(e) => { 
-                        setISFirst(true)
-                        setAmount(e.target.value); }} />
+            <CurrencyField value={firstInput}
+                inputFunc={(e) => {
+                    setIsFirst(true)
+                    setFirstInput(e.target.value)
+                }}
+                selectFunc={e => setFirstCurrency(e.target.value)}
+                reverseСurrency={secondCurrency} />
 
-
-                <select onChange={(e) => setCurrency(e.target.value)}>
-                    {currencies.map(currency => (
-                        currency === currencyResult ?
-                            <option key={currency} value={currency} disabled>{currency}</option>
-                            :
-                            <option key={currency} value={currency}>{currency}</option>))}
-                </select>
-            </div>
-
-            <div>
-                <input type="number" value={rate} 
-                onChange={(e) => {
-                    setISFirst(false)
-                    setRate(e.target.value)}} />
-
-
-                <select name="" id="" onChange={(e) => setCurrencyResult(e.target.value)}>
-                    {currencies.map(currency => (
-                        currency === requestedСurrency ?
-                            <option key={currency} value={currency} disabled>{currency}</option>
-                            :
-                            <option key={currency} value={currency}>{currency}</option>))}
-                </select>
-            </div>
+            <CurrencyField value={secondInput}
+                inputFunc={(e) => {
+                    setIsFirst(false)
+                    setSecondInput(e.target.value)
+                }}
+                selectFunc={e => setSecondCurrency(e.target.value)}
+                reverseСurrency={firstCurrency} />
         </div>
     )
 }
