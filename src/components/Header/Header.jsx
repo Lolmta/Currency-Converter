@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { currencies } from '../../helper'
+import { currencies } from '../../currencies'
 import style from './Header.module.css'
 
 const Header = () => {

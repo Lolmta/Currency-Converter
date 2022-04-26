@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { currencies } from '../../helper'
+import { currencies } from '../../currencies';
 import CurrencyField from './CurrencyField/CurrencyField';
 import style from './Converter.module.css'
 
@@ -21,7 +21,7 @@ const Converter = () => {
             isFirst ? firstCurrency : secondCurrency}`);
             const data = await res.data.rates
             isFirst ? setSecondInput((firstInput * data[secondCurrency]).toFixed(2))
-                : setFirstInput((secondInput * data[firstCurrency]).toFixed(2))
+            : setFirstInput((secondInput * data[firstCurrency]).toFixed(2))
         }
         getCurrency()
             .catch(console.error);

@@ -1,5 +1,5 @@
 import React from 'react'
-import { currencies } from '../../../helper'
+import { currencies } from '../../../currencies'
 import style from './CurrencyField.module.css'
 
 const CurrencyField = (props) => {
