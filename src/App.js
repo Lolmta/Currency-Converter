@@ -5,8 +5,10 @@ import Header from './components/Header/Header';
 function App() {
   return (
     <div className="App">
-      <Header/>
-      <Converter/>
+      <div className='container'>
+        <Header />
+        <Converter />
+      </div>
     </div>
   );
 }

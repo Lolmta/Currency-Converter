@@ -1,0 +1,24 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+.header{
+    margin: 0;
+    padding: 50px;
+}
+
+.rate{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: large;
+}
+
+.eur::before{
+content:'\20AC';
+}
+
+.usd::before{
+    content:'\0024';
+    }

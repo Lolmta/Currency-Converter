@@ -1,0 +1,23 @@
+.input{
+    width: 307px;
+    height: 52px;
+    box-sizing: border-box;
+    border-radius: 12px 0px 0px 12px;
+    background: #F3F3F3;
+    color: #272727;
+}
+
+.select {
+    width: 143px;
+    height: 52px;
+    background: #c1bfc9;
+    border-radius: 0px 12px 12px 0px;
+    color: #F3F3F3;
+}
+
+.main{
+    text-align: center;
+    font-size: large;
+    outline:none;
+    border: none;
+}

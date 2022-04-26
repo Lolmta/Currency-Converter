@@ -1,11 +1,17 @@
 import React from 'react'
 import { currencies } from '../../../helper'
+import style from './CurrencyField.module.css'
 
 const CurrencyField = (props) => {
     return (
         <div>
-            <input type="number" value={props.value} onChange={props.inputFunc} />
-            <select onChange={props.selectFunc}>
+            <input type="number"
+                className={[style.input, style.main].join(' ')}
+                value={props.value}
+                onChange={props.inputFunc} />
+            <select
+                onChange={props.selectFunc}
+                className={[style.select, style.main].join(' ')}>
                 {currencies.map(currency => (
                     currency === props.reverseСurrency ?
                         <option key={currency} value={currency} disabled>{currency}</option>
