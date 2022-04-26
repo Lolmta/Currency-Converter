@@ -27,7 +27,6 @@ const Header = () => {
       <h2 className={style.uah}>1</h2>
       <h2 className={style.eur}>{EURrate}</h2>
       </div>
-    
     </div>
   )
 }
