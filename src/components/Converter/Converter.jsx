@@ -27,8 +27,6 @@ const Converter = () => {
             .catch(console.error);
     }, [firstCurrency, firstInput, secondCurrency, secondInput, isFirst])
 
-
-
     return (
             <div className={style.main}>
                 <CurrencyField value={firstInput}
