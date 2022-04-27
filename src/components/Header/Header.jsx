@@ -24,7 +24,7 @@ const Header = () => {
       <h1 className={style.header}>Currency Converter</h1>
       <div className={style.rate}>
       <h2 className={style.usd}>{USDrate}</h2>
-      <h2 className={style.uah}>1</h2>
+      <h2 className={style.uah}></h2>
       <h2 className={style.eur}>{EURrate}</h2>
       </div>
     </div>
