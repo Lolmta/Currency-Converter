@@ -6,7 +6,7 @@
 
 .header {
     margin: 0;
-    padding-bottom:50px;
+    padding-bottom: 1.2em;
 
 }
 
@@ -15,6 +15,7 @@
     align-items: center;
     justify-content: space-evenly;
     font-size: large;
+    padding-bottom: 1.5em;
 }
 
 .eur::before {
